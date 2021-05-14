@@ -1,0 +1,36 @@
+.widget {
+  width: 100%;
+  padding: 10px;
+}
+
+.widget_search {
+}
+.widget_search > input {
+  border: 0;
+  border-radius: 20px;
+  height: 40px;
+  font-size: 15px;
+  background-color: var(--twitter-background);
+  outline: none;
+}
+
+.widget_search ::placeholder {
+  text-align: center;
+}
+
+.widget_search :focus {
+  background-color: #fff;
+  box-shadow: 0 0 1pt 1pt var(--twitter-color);
+}
+
+@media (max-width: 1300px) {
+  .widget {
+    max-width: 430px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .widget {
+    display: none;
+  }
+}

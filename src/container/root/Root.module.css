@@ -1,0 +1,69 @@
+.icon_twitter >svg {
+  font-size: 350px !important;
+  color: #fff;
+  padding: 10px;
+}
+.icon_twitter2 >svg {
+  font-size: 3rem!important;
+  color: var(--twitter-color);
+  
+}
+
+.root_part1 {
+  height: 100vh;
+  background-image: url(https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.root_part2 {
+  height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.root_content{
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+
+}
+.root_content > h1{
+    font-size: 4.5rem;
+}
+.root_content > h2{
+    font-size: 2rem;
+}
+.root_signup{
+    background-color: var(--twitter-color) !important;
+    color: #fff !important;
+    border: none !important;
+    font-weight: 900 !important;
+    font-size: 15px !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    height: 50px !important;
+    margin: 20px 0 !important;
+    width: 400px;
+}
+.root_login{
+    background-color: #fff !important;
+    color: var(--twitter-color) !important;
+    border: 1px solid var(--twitter-color) !important;
+    font-weight: 900 !important;
+    font-size: 15px !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    height: 50px !important;
+    width: 400px;
+    
+}
+.root_signup:hover{
+    background-color:  #1d8ff2 !important;
+}
+.root_login:hover{
+    background-color:  var(--twitter-background) !important;
+}

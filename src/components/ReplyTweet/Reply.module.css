@@ -1,0 +1,62 @@
+.replyTweet{
+    display: flex;
+    flex-flow: column;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #ffffff;
+    width: 500px;
+    margin: 50px auto;
+   
+    
+}
+
+.post{
+    display: flex;
+    padding: 15px 15px 5px 15px;
+    background-color: #ffffff;
+    
+
+}
+.post_avatar{
+    display: flex;
+    flex-flow: column;
+}
+.postStepper{
+    margin-top: 5px;
+    width: 1px;
+    height: 100%;
+    background-color:  gray;
+    border: 1px solid gray;
+    align-self: center;
+}
+.post_body{
+    width: 80%;
+    margin-left: 15px;
+}
+
+.post_header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.post_header >h3{
+    font-size: 15px;
+}
+.post_header >span{
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    color: gray;
+}
+
+
+.post_detail{
+    word-wrap: break-word;
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+

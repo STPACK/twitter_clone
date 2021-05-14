@@ -1,0 +1,40 @@
+.signup{
+    margin: 20px auto;
+    max-width: 320px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+.signup_form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 20px;
+}
+ 
+.signup_input{
+    margin: 5px 0 !important;
+}
+
+.signup_input >div >input{
+width: 300px;
+}
+
+.signup>a >svg{
+    font-size: 3rem!important;
+    color: var(--twitter-color);
+}
+
+.signup_button{
+    background-color: var(--twitter-color) !important;
+    color: #fff !important;
+    border: none !important;
+    font-weight: 900 !important;
+    font-size: 15px !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    height: 50px !important;
+    margin: 20px  0!important;
+    width: 330px;
+}

@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "./store/action/index";
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { Home, Root, Login, Signup } from "./container/index";
+import { CircularProgress } from "@material-ui/core";
 
-function App() {
+function App(props) {
+  const { authSubscribe, currentUser } = props;
+
+  useEffect(() => {
+    authSubscribe();
+  }, [authSubscribe]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/home" exact component={Home} />
+          <Route path="/" exact component={Root} />
+          <Redirect  to="/home" />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.auth.currentUser,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authSubscribe: () => dispatch(actions.authSubscribe()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

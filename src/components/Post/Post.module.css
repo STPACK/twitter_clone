@@ -1,0 +1,108 @@
+.post{
+    display: flex;
+    border-bottom: 1px solid var(--twitter-background);
+    padding: 15px 15px 0 15px;
+    background-color: #ffffff;
+
+}
+
+.post_avatar{
+    display: flex;
+    flex-flow: column;
+}
+.postStepper{
+    margin-top: 5px;
+    width: 1px;
+    height: 100%;
+    background-color:  gray;
+    border: 1px solid gray;
+    align-self: center;
+}
+
+.post_body{
+    width: 100%;
+    margin-left: 15px;
+}
+
+.post_header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.post_header >h3{
+    font-size: 15px;
+}
+.post_header >span{
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    color: gray;
+}
+
+.post_img{
+    width: 100%;
+    margin-bottom: 5px;
+}
+.post_img >img{
+    width: 100%;
+    border-radius: 20px;
+}
+.post_detail{
+    font-size: 15px;
+    width: 90%;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.post_footer{
+    display: flex;
+    margin-right: 100px;
+    justify-content: space-between;
+}
+.post_footer > div{
+    margin-bottom: 10px ;
+    display: flex;
+    align-items: center;
+    
+}
+
+.post_footer> div >p {
+    font-size: 13px;
+    color: gray;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.post_footer > div >svg{
+    font-size: 18px !important;
+    color: gray;
+    padding: 8px;
+    
+   
+}
+
+.icon_chat  :hover {
+    color: #1da1f2 !important;
+    background-color:#d6eefd;
+    border-radius: 100%;
+    transition: background-color 0.1s ease-out;
+}
+.icon_repeat :hover {
+    color: #17bf5a !important;
+    background-color: #dafbe7;
+    border-radius: 100%;
+    transition: background-color 0.1s ease-out;
+}
+.icon_fav :hover{
+    color: #e0245e !important;
+    background-color: #fbe1e9;
+    border-radius: 100%;
+    transition:  background-color 0.3s ease-out;
+}
+.icon_publish :hover{
+    color: #1da1f2 !important;
+    background-color:#d6eefd;
+    border-radius: 100%;
+    transition: background-color 0.1s ease-out;
+}
