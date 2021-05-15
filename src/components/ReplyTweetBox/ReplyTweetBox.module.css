@@ -1,5 +1,5 @@
 .tweetBox {
-   
+   padding-top: 0;
   }
   
   .tweetBox > form {
@@ -11,7 +11,8 @@
   }
   
   .tweetBox_input {
-    padding: 15px;
+    margin-top: 5px;
+    padding: 0 15px 10px 15px;
     display: flex;
   }
   .tweetBox_content{

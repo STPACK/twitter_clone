@@ -8,9 +8,10 @@ import { Button, CircularProgress, TextField } from "@material-ui/core";
 
 const Login = React.memo((props) => {
   const { loginHandler, currentUser,loading } = props;
-  const [email, setEmail] = useState("ee@ee.com");
-  const [password, setPassword] = useState("eeeeee");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
+  
   useEffect(() => {
     if (currentUser !== null) history.push("/home");
   }, [currentUser,history]);

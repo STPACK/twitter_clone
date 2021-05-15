@@ -9,24 +9,46 @@ import {
   Switch,
 } from "react-router-dom";
 import { Home, Root, Login, Signup } from "./container/index";
-import { CircularProgress } from "@material-ui/core";
+
 
 function App(props) {
-  const { authSubscribe, currentUser } = props;
+  const { authSubscribe, currentUser,authPath } = props;
 
   useEffect(() => {
     authSubscribe();
   }, [authSubscribe]);
 
+
+
+
   return (
     <>
       <Router>
         <Switch>
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/" exact component={Root} />
-          <Redirect  to="/home" />
+          <Route path="/home">
+              {/* {currentUser !== null && <Home loading={loading}/> }
+              {currentUser === null && <Redirect to="/"/> } */}
+              <Home/>
+          </Route>
+          <Route path="/signup" >
+            {/* {currentUser === null && <Signup/> }
+              {currentUser !== null && <Redirect to="/"/> } */}
+              <Signup/>
+          </Route>
+          <Route path="/login" >
+              {/* {currentUser === null && <Login/> }
+              {currentUser !== null && <Redirect to="/"/> } */}
+              <Login/>
+          </Route>
+          <Route path="/" exact>
+              {/* {currentUser === null && <Root/> }
+              {currentUser !== null && <Redirect to="/home"/> } */}
+              <Root authPath={authPath} currentUser={currentUser}/>
+          </Route>
+          <Route path='*'>
+               {currentUser !== null && <Home/> }
+              {currentUser === null && <Redirect to="/"/> }
+        </Route>
         </Switch>
       </Router>
     </>
@@ -36,6 +58,7 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
+    authPath:state.auth.authPAth
   };
 };
 

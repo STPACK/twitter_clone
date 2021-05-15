@@ -4,7 +4,8 @@ const initailState ={
     currentUser:null,
     loading:false,
     error:null,
-    authPath:false
+    authPath:false,
+    checkAuth:false
     
 }
 

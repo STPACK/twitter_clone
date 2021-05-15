@@ -31,11 +31,12 @@ export const authSignUp = (email, password,username,photoUrl) => {
 
 export const authSubscribe = () => {
   return (dispatch) => {
-    console.log("authSub action");
+    dispatch(authStart())
     auth.onAuthStateChanged((user) => {
       if (user) {
         return dispatch(authSuccess(user,false));
       }
+      return dispatch(authSuccess(null,true));
     });
   };
 };

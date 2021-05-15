@@ -1,9 +1,9 @@
-import React from "react";
+import React,{forwardRef} from "react";
 import classes from "./Reply.module.css";
 import ReplyTweetBox from "../ReplyTweetBox/ReplyTweetBox";
 import { Avatar, CircularProgress } from "@material-ui/core";
 
-const ReplyTweet = (props) => {
+const ReplyTweet = forwardRef((props,ref) => {
   const { tweetReply,replyTweet, currentUser, loading ,} = props;
 
  
@@ -28,12 +28,12 @@ const ReplyTweet = (props) => {
             </div>
           </div>
         </div>
-        <ReplyTweetBox currentUser={currentUser} replyHandler={(data,key)=>replyTweet(data,key)} tweetKey={tweetReply.key} />
+        <ReplyTweetBox currentUser={currentUser} replyHandler={replyTweet} tweetKey={tweetReply.key} />
       </>
     );
   }
 
-  return <div className={classes.replyTweet}>{content}</div>;
-};
+  return <div className={classes.replyTweet} ref={ref}>{content}</div>;
+})
 
 export default ReplyTweet;

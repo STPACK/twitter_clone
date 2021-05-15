@@ -34,7 +34,7 @@ const ReplyTweetBox = (props) => {
         <div className={classes.tweetBox_input}>
           <Avatar src={currentUser.photoURL} />
           <div className={classes.tweetBox_content}>
-            <TextareaAutosize className={classes.tweetBox_input_text} autoFocus rowsMin={2} placeholder="Tweet your reply" value={text} onChange={(e)=>setText(e.target.value)} />
+            <TextareaAutosize className={classes.tweetBox_input_text} autoFocus tabIndex="-1" rowsMin={2} placeholder="Tweet your reply" value={text} onChange={(e)=>setText(e.target.value)} />
             <div className={classes.tweetBox_action}>
               <div className={classes.tweetBox_img}>
               <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />

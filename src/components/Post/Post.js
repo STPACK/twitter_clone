@@ -17,7 +17,7 @@ const Post = (props) => {
     <div className={classes.post} >
       <div className={classes.post_avatar}>
         <Avatar src={tweet.photoURL}/>
-        {Boolean(replyData.length) && <div className={classes.postStepper}></div> }
+        {/* {Boolean(replyData.length) && <div className={classes.postStepper}></div> } */}
        
       </div>
       <div className={classes.post_body}>
@@ -47,14 +47,14 @@ const Post = (props) => {
           </div>
         </div>
 
-      </div>
-    </div>
     {tweet.reply? (
       replyData.map((res)=>
 
         <ReplyPost reply={res} username={tweet.username} key={res.tweetTime}/>
        )
     ):null}
+      </div>
+    </div>
     </>
   );
 }

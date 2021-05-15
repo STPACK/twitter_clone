@@ -45,13 +45,17 @@ const Home = (props) => {
   const handleClose = () => {
     setModalHandler(false)
   };
+  const replyTweetHandler = (data,key) => {
+    replyTweet(data,key)
+    setModalHandler(false)
+  };
 
   let content = <CircularProgress size={100} />;
   if (currentUser !== null) {
     content = (
       <div className={classes.home}>
         <TransitionsModal openModal={modalHandler}  handleClose={handleClose}  >
-          <ReplyTweet currentUser={currentUser} tweetReply={tweetReply} loading={loading} replyTweet={replyTweet}  />
+          <ReplyTweet currentUser={currentUser} tweetReply={tweetReply} loading={loading} replyTweet={replyTweetHandler}  />
         </TransitionsModal>
         <Sidebar currentUser={currentUser} logoutHandler={logoutHandler} />
         <Feed tweetList={tweetList} tweetTweet={tweetTweet} postLoading={postLoading} currentUser={currentUser}  onReply={handleOpen} />

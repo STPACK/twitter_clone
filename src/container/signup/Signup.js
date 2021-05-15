@@ -4,15 +4,16 @@ import *as actions from '../../store/action/index';
 import classes from "./Signup.module.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import {Link,useHistory} from 'react-router-dom';
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField,CircularProgress } from "@material-ui/core";
 
 const Signup = React.memo((props) => {
-  const {SignupHandler,currentUser} =props
+  const {SignupHandler,currentUser,loading} =props
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [photoUrl, setPhotoUrl] = useState('')
   const [password, setPassword] = useState('')
   const history = useHistory();
+
   useEffect(() => {
     if (currentUser !== null) history.push("/home");
   }, [currentUser,history]);
@@ -31,10 +32,10 @@ const Signup = React.memo((props) => {
         <div className={classes.signup_form}>
           <TextField label="Email" className={classes.signup_input} type="email" variant="outlined" value={email} onChange={(e)=>setEmail(e.target.value)} />
           <TextField label="Password" className={classes.signup_input} type="password" variant="outlined" value={password} onChange={(e)=>setPassword(e.target.value)} />
-          <TextField label="Username" className={classes.signup_input} type="text" variant="outlined" value={username} onChange={(e)=>setUsername(e.target.value)} />
+          <TextField label="display name" className={classes.signup_input} type="text" variant="outlined" value={username} onChange={(e)=>setUsername(e.target.value)} />
           <TextField label="Avatar Url" className={classes.signup_input} type="text" variant="outlined" value={photoUrl} onChange={(e)=>setPhotoUrl(e.target.value)} />
           <Button type="submit" className={classes.signup_button}>
-            Sign up
+          {!loading ?"Sign up": <CircularProgress size={25} />}
           </Button>
         </div>
       </form>
@@ -46,6 +47,7 @@ const Signup = React.memo((props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
+    loading :state.auth.loading
   };
 };
 
