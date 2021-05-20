@@ -1,42 +1,46 @@
 import * as actionsTypes from "./actionTypes";
-import {  auth } from "../../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 
 export const authSignIn = (email, password) => {
   return (dispatch) => {
     dispatch(authStart());
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((user) => dispatch(authSuccess(user,false)))
+      .then((user) => dispatch(authSuccess(user, false)))
       .catch((e) => dispatch(authFail(e.massage)));
   };
 };
-export const authSignUp = (email, password,username,photoUrl) => {
+export const authSignUp = (email, password, username, photoUrl) => {
   return (dispatch) => {
     dispatch(authStart());
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then(() =>{
-        const userData = auth.currentUser
-        userData.updateProfile({
-          displayName:username,
-          photoURL:photoUrl
-        })
-        .then(()=>{
-          dispatch(authSubscribe())
-        })
-      }) 
+      .then(() => {
+        const userData = auth.currentUser;
+        userData
+          .updateProfile({
+            displayName: username,
+            photoURL: photoUrl,
+          })
+          .then(() => {
+            dispatch(authSubscribe());
+          });
+      })
       .catch((e) => dispatch(authFail(e.massage)));
   };
 };
 
 export const authSubscribe = () => {
   return (dispatch) => {
-    dispatch(authStart())
+    dispatch(authStart());
     auth.onAuthStateChanged((user) => {
       if (user) {
-        return dispatch(authSuccess(user,false));
+        dispatch(authSuccess(user, false));
+        dispatch({ type: actionsTypes.AUTH_CHECK, payload: true });
+      } else {
+        dispatch(authSuccess(null, true));
+        dispatch({ type: actionsTypes.AUTH_CHECK, payload: true });
       }
-      return dispatch(authSuccess(null,true));
     });
   };
 };
@@ -47,7 +51,7 @@ export const authSignOut = () => {
     auth
       .signOut()
       .then(() => {
-        dispatch(authSuccess(null,true));
+        dispatch(authSuccess(null, true));
       })
       .catch((e) => {
         dispatch(authFail(e.message));
@@ -60,11 +64,11 @@ export const authStart = () => {
     type: actionsTypes.AUTH_START,
   };
 };
-export const authSuccess = (user,method) => {
+export const authSuccess = (user, method) => {
   return {
     type: actionsTypes.AUTH_SUCCESS,
     currentUser: user,
-    authPath:method
+    authPath: method,
   };
 };
 export const authFail = (e) => {
@@ -76,6 +80,6 @@ export const authFail = (e) => {
 export const authPath = (method) => {
   return {
     type: actionsTypes.AUTH_PATH,
-    authPath:method
+    authPath: method,
   };
 };

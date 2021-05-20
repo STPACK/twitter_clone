@@ -10,45 +10,33 @@ import {
 } from "react-router-dom";
 import { Home, Root, Login, Signup } from "./container/index";
 
-
 function App(props) {
-  const { authSubscribe, currentUser,authPath } = props;
+  const { authSubscribe, currentUser, authPath,authCheck } = props;
 
   useEffect(() => {
     authSubscribe();
   }, [authSubscribe]);
-
-
-
 
   return (
     <>
       <Router>
         <Switch>
           <Route path="/home">
-              {/* {currentUser !== null && <Home loading={loading}/> }
-              {currentUser === null && <Redirect to="/"/> } */}
-              <Home/>
+            <Home />
           </Route>
-          <Route path="/signup" >
-            {/* {currentUser === null && <Signup/> }
-              {currentUser !== null && <Redirect to="/"/> } */}
-              <Signup/>
+          <Route path="/signup">
+            {currentUser !== null ? <Redirect to="/" /> : <Signup />}
           </Route>
-          <Route path="/login" >
-              {/* {currentUser === null && <Login/> }
-              {currentUser !== null && <Redirect to="/"/> } */}
-              <Login/>
+          <Route path="/login">
+            {currentUser !== null ? <Redirect to="/" /> : <Login />}
           </Route>
           <Route path="/" exact>
-              {/* {currentUser === null && <Root/> }
-              {currentUser !== null && <Redirect to="/home"/> } */}
-              <Root authPath={authPath} currentUser={currentUser}/>
+            <Root authPath={authPath} currentUser={currentUser} authCheck={authCheck} />
           </Route>
-          <Route path='*'>
-               {currentUser !== null && <Home/> }
-              {currentUser === null && <Redirect to="/"/> }
-        </Route>
+          <Route path="*">
+            {currentUser !== null && <Home />}
+            {currentUser === null && <Redirect to="/" />}
+          </Route>
         </Switch>
       </Router>
     </>
@@ -58,7 +46,8 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    authPath:state.auth.authPAth
+    authPath: state.auth.authPath,
+    authCheck: state.auth.authCheck,
   };
 };
 

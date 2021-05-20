@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Button, CircularProgress, TextField } from "@material-ui/core";
 
 const Login = React.memo((props) => {
-  const { loginHandler, currentUser,loading } = props;
+  const { loginHandler, currentUser,loading,authCheck } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -23,6 +23,7 @@ const Login = React.memo((props) => {
 
   return (
     <>
+      {!authCheck ? <CircularProgress size={100} /> :<>
       <div className={classes.login}>
         <Link to="/">
           <TwitterIcon />
@@ -54,6 +55,7 @@ const Login = React.memo((props) => {
         </form>
         <Link to="/signup"> Sign up for twitter</Link>
       </div>
+      </>}
     </>
   );
 });
@@ -61,7 +63,8 @@ const Login = React.memo((props) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    loading :state.auth.loading
+    loading :state.auth.loading,
+    authCheck:state.auth.authCheck
   };
 };
 

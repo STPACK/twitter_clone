@@ -1,61 +1,94 @@
-import React,{useState,useEffect} from 'react'
-import {connect} from 'react-redux';
-import *as actions from '../../store/action/index';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/action/index";
 import classes from "./Signup.module.css";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import {Link,useHistory} from 'react-router-dom';
-import { Button, TextField,CircularProgress } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+import { Button, TextField, CircularProgress } from "@material-ui/core";
 
 const Signup = React.memo((props) => {
-  const {SignupHandler,currentUser,loading} =props
-  const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
-  const [photoUrl, setPhotoUrl] = useState('')
-  const [password, setPassword] = useState('')
+  const { SignupHandler, currentUser, loading, authCheck } = props;
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
   useEffect(() => {
     if (currentUser !== null) history.push("/home");
-  }, [currentUser,history]);
+  }, [currentUser, history]);
 
-  const onSubmitHandler = (event)=>{
-    event.preventDefault()
-    SignupHandler(email,password,username,photoUrl)
-  }
-    return (
-        <div className={classes.signup}>
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    SignupHandler(email, password, username, photoUrl);
+  };
+  return (
+    <>
+    {!authCheck ? <CircularProgress size={100} /> :<>
+    <div className={classes.signup}>
       <Link to="/">
-      <TwitterIcon />
+        <TwitterIcon />
       </Link>
       <h1>Sign up to Twitter</h1>
       <form onSubmit={onSubmitHandler}>
         <div className={classes.signup_form}>
-          <TextField label="Email" className={classes.signup_input} type="email" variant="outlined" value={email} onChange={(e)=>setEmail(e.target.value)} />
-          <TextField label="Password" className={classes.signup_input} type="password" variant="outlined" value={password} onChange={(e)=>setPassword(e.target.value)} />
-          <TextField label="display name" className={classes.signup_input} type="text" variant="outlined" value={username} onChange={(e)=>setUsername(e.target.value)} />
-          <TextField label="Avatar Url" className={classes.signup_input} type="text" variant="outlined" value={photoUrl} onChange={(e)=>setPhotoUrl(e.target.value)} />
+          <TextField
+            label="Email"
+            className={classes.signup_input}
+            type="email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            className={classes.signup_input}
+            type="password"
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            label="display name"
+            className={classes.signup_input}
+            type="text"
+            variant="outlined"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            label="Avatar Url"
+            className={classes.signup_input}
+            type="text"
+            variant="outlined"
+            value={photoUrl}
+            onChange={(e) => setPhotoUrl(e.target.value)}
+          />
           <Button type="submit" className={classes.signup_button}>
-          {!loading ?"Sign up": <CircularProgress size={25} />}
+            {!loading ? "Sign up" : <CircularProgress size={25} />}
           </Button>
         </div>
       </form>
       <Link to="/login"> Log in to twitter</Link>
     </div>
-    )
-})
+    </>}
+    </>
+  );
+});
 
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
-    loading :state.auth.loading
+    loading: state.auth.loading,
+    authCheck: state.auth.authCheck,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SignupHandler: (email, password,username,photoUrl) =>
-      dispatch(actions.authSignUp(email, password,username,photoUrl)),
+    SignupHandler: (email, password, username, photoUrl) =>
+      dispatch(actions.authSignUp(email, password, username, photoUrl)),
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

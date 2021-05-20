@@ -26,13 +26,11 @@ const Home = (props) => {
   } = props;
   const history = useHistory();
   
-
   useEffect(() => {
     fetchTweetHandler();
     if(authPath){
       return history.push("/")
     }
-    
   }, [fetchTweetHandler, authPath, history]);
 
   const [modalHandler, setModalHandler] = useState(false)
@@ -51,18 +49,21 @@ const Home = (props) => {
   };
 
   let content = <CircularProgress size={100} />;
-  if (currentUser !== null) {
-    content = (
-      <div className={classes.home}>
-        <TransitionsModal openModal={modalHandler}  handleClose={handleClose}  >
-          <ReplyTweet currentUser={currentUser} tweetReply={tweetReply} loading={loading} replyTweet={replyTweetHandler}  />
-        </TransitionsModal>
-        <Sidebar currentUser={currentUser} logoutHandler={logoutHandler} />
-        <Feed tweetList={tweetList} tweetTweet={tweetTweet} postLoading={postLoading} currentUser={currentUser}  onReply={handleOpen} />
-        <Widget />
-      </div>
-    );
-  }
+ 
+
+    if (currentUser !== null) {
+      content = (
+        <div className={classes.home}>
+          <TransitionsModal openModal={modalHandler}  handleClose={handleClose}  >
+            <ReplyTweet currentUser={currentUser} tweetReply={tweetReply} loading={loading} replyTweet={replyTweetHandler}  />
+          </TransitionsModal>
+          <Sidebar currentUser={currentUser} logoutHandler={logoutHandler} />
+          <Feed tweetList={tweetList} tweetTweet={tweetTweet} postLoading={postLoading} currentUser={currentUser}  onReply={handleOpen} />
+          <Widget />
+        </div>
+      );
+    }
+
   return content;
 };
 

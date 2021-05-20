@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import React,{useEffect} from "react";
 import classes from "./Root.module.css";
 import { Button, Grid } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { CircularProgress } from "@material-ui/core";
 
-const Root = ({ authPath, currentUser }) => {
+const Root = ({ currentUser,authCheck }) => {
   const history = useHistory();
+
   useEffect(() => {
-    if (!authPath && currentUser !== null) {
+    if (currentUser !== null) {
       return history.push("/home");
     }
-  }, [authPath, history, currentUser]);
+    
+  }, [currentUser,history])
 
   let content = <CircularProgress />;
 
-  if (authPath || currentUser === null) {
+  if (authCheck) {
     content = (
       <>
         <Grid container spacing={0} direction="row-reverse">
