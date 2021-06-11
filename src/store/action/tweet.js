@@ -13,7 +13,6 @@ export const tweetTweet = data =>{
 }
 export const replyTweet = (data,key) =>{
     return dispatch=>{
-      
         dispatch(fetchTweetStart)
         db.ref('/tweet/'+key+'/reply').push(data)
         .then(()=>{
@@ -54,6 +53,29 @@ export const fetchTweetReply = (tweetKey)=>{
         .catch(e=>console.log(e.massage))
     }
 }
+
+export const likeTweet =(tweetKey,uid,method)=>{
+    return dispatch=>{
+        if(method){
+            db.ref('tweet/'+tweetKey+'/like/'+uid).set(1)
+        }else{
+            console.log("delete in action");
+            db.ref('tweet/'+tweetKey+'/like/'+uid).set(null)
+        }
+        dispatch(tweetTweet())
+    }
+}
+export const reTweet =(tweetKey,uid,method)=>{
+    return dispatch=>{
+        if(method){
+            db.ref('tweet/'+tweetKey+'/reTweet/'+uid).set(1)
+        }else{
+            db.ref('tweet/'+tweetKey+'/reTweet/'+uid).set(null)
+        }
+        dispatch(tweetTweet())
+    }
+}
+
 export const fetchTweetReplySuccess = (tweetData)=>{
     return{
         type:actionTypes.FETCH_TWEET_REPLY_SUCCESS,

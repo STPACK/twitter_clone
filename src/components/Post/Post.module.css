@@ -95,7 +95,7 @@
     transition: background-color 0.1s ease-out;
 }
 .icon_fav :hover{
-    color: #e0245e !important;
+    color: #e0245e ;
     background-color: #fbe1e9;
     border-radius: 100%;
     transition:  background-color 0.3s ease-out;
@@ -105,4 +105,12 @@
     background-color:#d6eefd;
     border-radius: 100%;
     transition: background-color 0.1s ease-out;
+}
+
+.likeActive svg,.likeActive p{
+      color: #e0245e !important;
+}
+
+.reActive svg,.reActive p{
+    color: #17bf5a !important;
 }

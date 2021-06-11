@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import classes from "./TweetBox.module.css";
 import moment from 'moment';
-import { Avatar, Button,TextareaAutosize ,IconButton } from "@material-ui/core";
+import { Avatar, Button,TextareaAutosize ,IconButton,CircularProgress } from "@material-ui/core";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 
 const TweetBox = (props) => {
 
-   const {tweetHandler,currentUser} = props
+   const {tweetHandler,currentUser,loading} = props
    const [text, setText] = useState('')
    
 
@@ -45,7 +46,12 @@ const TweetBox = (props) => {
               </label>
               </div>
 
-              <Button className={classes.tweetBox_button} type="submit">Tweet</Button>
+              <Button className={classes.tweetBox_button} type="submit">
+
+                {loading ?  <CircularProgress size={20}/> : 'Tweet'}
+
+                
+                </Button>
             </div>
           </div>
         </div>
